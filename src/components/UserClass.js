@@ -1,5 +1,6 @@
 import React from 'react';
 import { json } from 'react-router-dom';
+import userContext from '../utils/UserContext.js';
 
 class UserClass extends React.Component{
     constructor(props){
@@ -33,8 +34,8 @@ class UserClass extends React.Component{
 
 
         return (
-            <div className="user-card">
-              <img src={avatar_url} alt="avatar image" />
+            <div className="m-5 p-2  shadow-2xl w-72">
+              <img className='w-60 rounded-full ' src={avatar_url} alt="avatar image" />
              <h2>Name : {name} </h2>
              <h3>Location : {location} </h3>
              <h4>Contact : aj230104@gmail.com </h4>

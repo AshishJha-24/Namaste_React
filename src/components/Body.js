@@ -1,14 +1,18 @@
-import RestoCard from "./RestoCard";
-import { useState, useEffect } from "react";
+import RestoCard, { withPromotedLabel } from "./RestoCard";
+import { useState, useEffect,useContext } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { RESTAURANTS } from "../utils/constants.js";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [serarchText, setSerachText] = useState("");
   const [filterData, setfilterData] = useState([]);
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
+
+  const PromotedRestoCard = withPromotedLabel(RestoCard);
+  const {loggedInUser,setUserName}=useContext(UserContext);
 
   useEffect(() => {
     fectchData();
@@ -23,9 +27,8 @@ const Body = () => {
     setListOfRestaurant(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-
-    console.log(filterData);
   };
+  console.log(listOfRestaurant);
 
   const onlineStatus = useOnlineStatus();
 
@@ -41,9 +44,10 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="flex">
+        <div className=" m-4">
           <input
+            className="border border-solid border-black"
             type="text"
             value={serarchText}
             onChange={(e) => {
@@ -51,6 +55,7 @@ const Body = () => {
             }}
           />
           <button
+            className="px-4 py-2 bg-green-100 m-4"
             onClick={() => {
               const filteredList = listOfRestaurant.filter((data) => {
                 return data.info.name
@@ -63,31 +68,51 @@ const Body = () => {
             Search
           </button>
         </div>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            setfilterData(
-              listOfRestaurant.filter((data) =>{
-                return data.info.avgRating > 4.3;
-              } )
-            );
-          }}
-        >
-          Top Rated Restaurant
-        </button>
-      </div>
 
-      <div className="res-container">
-        {filterData.map((restaurant) => (
-          <Link
-            key={restaurant.info.id}
-            to={"/restaurants/" + restaurant.info.id}
+        <div className=" m-4">
+          <button
+            className="px-4 py-2 bg-green-100 m-4 "
+            onClick={() => {
+              setfilterData(
+                listOfRestaurant.filter((data) => {
+                  return data.info.avgRating > 4.3;
+                })
+              );
+            }}
           >
-            <RestoCard resData={restaurant} />{" "}
-          </Link>
-        ))}
+            Top Rated Restaurant
+          </button>
+        </div>
+        <div className="mx-4 my-8">
+          <label >User: </label>
+          <input
+            className="p-2 border border-solid border-black"
+            type="text"
+            value={loggedInUser}
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+          />
       </div>
-    </div>
+      </div>
+   
+        <div className="flex flex-wrap m-10" >
+          {filterData.map((restaurant) => (
+            <Link
+              key={restaurant.info.id}
+              to={"/restaurants/" + restaurant.info.id}
+            >
+              {restaurant.info.avgRating > 4.4 ?
+               <PromotedRestoCard resData={restaurant} />
+           : 
+                <RestoCard resData={restaurant} />
+              }
+            </Link>
+          ))}
+
+      </div>
+     </div>
+   
   );
 };
 
