@@ -3,6 +3,7 @@ import { useState,useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header=()=>{
 
@@ -10,6 +11,11 @@ const Header=()=>{
     const data =useContext(UserContext);
     console.log(data);
     const onlineStatus=useOnlineStatus();
+
+    // Subscribe to the store using Selector
+
+    const cartItem = useSelector((store)=>store.cart.items);
+    console.log(cartItem);
 
   return  (
   <div className="flex justify-between shadow-lg bg-pink-100 m-2">
@@ -24,7 +30,7 @@ const Header=()=>{
             <li  className="mx-4  hover:bg-pink-400 " ><Link className=" px-4 py-2  block" to="/about">About Us</Link></li>
             <li  className="mx-4  hover:bg-pink-400 " ><Link className=" px-4 py-2  block"  to="/contact">Contact Us</Link></li>
             <li  className="mx-4  hover:bg-pink-400" ><Link className=" px-4 py-2  block" to="/grocery">Grocery </Link></li>
-            <li  className="mx-4  hover:bg-pink-400 px-4 py-2" >Cart</li>
+            <li  className="mx-4 font-bold  hover:bg-pink-400" ><Link className=" px-4 py-2  block" to="/cart">Cart { cartItem.length }</Link></li>
             <button className="loginbtn" onClick={()=>{
               if(loginbtnText==="Login"){
                 setLoginBtnText("Log Out");
