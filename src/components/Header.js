@@ -9,14 +9,12 @@ const Header=()=>{
 
     const [loginbtnText, setLoginBtnText]=useState("Login");
     const data =useContext(UserContext);
-    console.log(data);
     const onlineStatus=useOnlineStatus();
 
     // Subscribe to the store using Selector
 
     const cartItem = useSelector((store)=>store.cart.items);
-    console.log(cartItem);
-
+   
   return  (
   <div className="flex justify-between shadow-lg bg-pink-100 m-2">
     <div className="flex">

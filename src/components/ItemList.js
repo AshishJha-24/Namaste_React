@@ -5,6 +5,8 @@ const ItemList=({items})=>{
 
 
     const dispatch = useDispatch()
+    console.log(dispatch)
+
     const handleAddItem=(item)=>{
         
         //Dispatch an action 

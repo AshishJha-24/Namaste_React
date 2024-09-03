@@ -28,7 +28,7 @@ const Body = () => {
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
-  console.log(listOfRestaurant);
+  // console.log(listOfRestaurant);
 
   const onlineStatus = useOnlineStatus();
 
@@ -40,7 +40,7 @@ const Body = () => {
     );
   }
 
-  return listOfRestaurant.length === 0 ? (
+  return listOfRestaurant && listOfRestaurant.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
@@ -49,6 +49,7 @@ const Body = () => {
           <input
             className="border border-solid border-black"
             type="text"
+            data-testid="searchInput"
             value={serarchText}
             onChange={(e) => {
               setSerachText(e.target.value);
@@ -75,7 +76,7 @@ const Body = () => {
             onClick={() => {
               setfilterData(
                 listOfRestaurant.filter((data) => {
-                  return data.info.avgRating > 4.3;
+                  return data.info.avgRating > 4.1;
                 })
               );
             }}
@@ -97,7 +98,7 @@ const Body = () => {
       </div>
    
         <div className="flex flex-wrap m-10" >
-          {filterData.map((restaurant) => (
+          {filterData&& filterData.map((restaurant) => (
             <Link
               key={restaurant.info.id}
               to={"/restaurants/" + restaurant.info.id}

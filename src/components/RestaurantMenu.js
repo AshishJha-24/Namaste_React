@@ -17,15 +17,15 @@ const RestaurantMenu = () => {
     return <Shimmer/>;
   }
 
-  const {name, cuisines, costForTwoMessage} =resInfo?.cards[0]?.card?.card?.info;
+  const {name, cuisines, costForTwoMessage} =resInfo?.cards[2]?.card?.card?.info || resInfo?.cards[4]?.card?.card?.info;
 
-  let {itemCards}=resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card ;
+  let {itemCards}=resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card||resInfo?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card ;
   if(itemCards==undefined){
     itemCards=resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.categories[0].itemCards;;
   }
 
 
-  const categories=resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(c=>c.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+  const categories=(resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards||resInfo?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards).filter(c=>c.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
   
   return  (
     <div className="text-center ">
@@ -37,7 +37,7 @@ const RestaurantMenu = () => {
 
      {/* Categories accordions */}
      {
-      categories.map((category,index)=>{
+         categories.map((category,index)=>{
         return <RestaurantCategory key={category?.card?.card?.title}data={category?.card?.card}
          showItem={index===showIndex?true:false}
          setShowIndex={setShowIndex}

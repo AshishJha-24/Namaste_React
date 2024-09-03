@@ -1,11 +1,11 @@
 import { CDN_URL } from "../utils/constants";
 const RestoCard=(props)=>{
     const {resData}=props;
-    const{name,cuisines,avgRating,cloudinaryImageId,sla,areaName}=resData.info;
+    const{name,cuisines,avgRating,cloudinaryImageId,sla,areaName}=resData?.info;
 
 
    return  (
-    <div className="m-4 hover:scale-90">
+    <div data-testid="resCard"className="m-4 hover:scale-90">
         <img className="w-[200px] h-[200px] rounded-xl"src={CDN_URL+cloudinaryImageId} alt="res img" />
         <div className="w-[200px]">
         <p className="font-bold truncate">{name}</p>

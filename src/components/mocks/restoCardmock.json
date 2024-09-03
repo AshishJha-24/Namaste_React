@@ -1,0 +1,63 @@
+{
+    "info": {
+        "id": "239435",
+        "name": "La Pino'z Pizza",
+        "cloudinaryImageId": "tolejbnae10pq0udbavn",
+        "locality": "New delhi",
+        "areaName": "Paschim Vihar",
+        "costForTwo": "₹350 for two",
+        "cuisines": [
+            "Pizzas",
+            "Pastas",
+            "Italian",
+            "Desserts",
+            "Beverages"
+        ],
+        "avgRating": 4.2,
+        "parentId": "4961",
+        "avgRatingString": "4.2",
+        "totalRatingsString": "5K+",
+        "sla": {
+            "deliveryTime": 70,
+            "lastMileTravel": 5,
+            "serviceability": "SERVICEABLE",
+            "slaString": "70 mins",
+            "lastMileTravelString": "5.0 km",
+            "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+            "nextCloseTime": "2024-03-03 05:00:00",
+            "opened": true
+        },
+        "badges": {},
+        "isOpen": true,
+        "type": "F",
+        "badgesV2": {
+            "entityBadges": {
+                "imageBased": {},
+                "textBased": {},
+                "textExtendedBadges": {}
+            }
+        },
+        "aggregatedDiscountInfoV3": {
+            "header": "20% OFF",
+            "subHeader": "UPTO ₹100"
+        },
+        "differentiatedUi": {
+            "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+            "differentiatedUiMediaDetails": {
+                "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+                "lottie": {},
+                "video": {}
+            }
+        },
+        "reviewsSummary": {},
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "restaurantOfferPresentationInfo": {}
+    },
+    "analytics": {},
+    "cta": {
+        "link": "https://www.swiggy.com/restaurants/la-pinoz-pizza-new-paschim-vihar-delhi-239435",
+        "type": "WEBLINK"
+    }
+}
